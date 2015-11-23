@@ -133,6 +133,7 @@ GEM
       multi_xml (~> 0.5)
       rack (~> 1.2)
     origin (2.1.1)
+    puma (2.13.4)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -243,6 +244,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mongoid
+  puma
   rails (= 4.2.2)
   rails-assets-seiyria-bootstrap-slider!
   refile
