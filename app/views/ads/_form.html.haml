@@ -1,0 +1,13 @@
+= simple_form_for @ad, as: :advertising do |f|
+  = f.input :name
+  = f.input :price
+  = f.input :description, as: :text
+  = f.input :location, as: :hidden
+  = f.input :image_preview, as: :file
+  = f.input :address, class: "typeahead"
+  = f.button :submit, "Сохранить"
+
+:javascript
+  $(document).ready(function(){
+    initSearchAddress()
+  });

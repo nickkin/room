@@ -1,0 +1,91 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ #= require seiyria-bootstrap-slider
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/*start override seiyria-bootstrap-slider*/
+
+.slider {
+  margin: 0 10px;
+  &.slider-horizontal { width: 72%; }
+}
+
+/*end override seiyria-bootstrap-slider*/
+
+.bs-callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+  h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+  code {
+    border-radius: 3px;
+  }
+  + .bs-callout {
+    margin-top: -5px;
+  }
+}
+
+.bs-callout-default {
+  border-left-color: #777;
+  h4 {
+    color: #777;
+  }
+}
+
+.bs-callout-primary {
+  border-left-color: #428bca;
+  h4 {
+    color: #428bca;
+  }
+}
+
+.bs-callout-success {
+  border-left-color: #5cb85c;
+  h4 {
+    color: #5cb85c;
+  }
+}
+
+.bs-callout-danger {
+  border-left-color: #d9534f;
+  h4 {
+    color: #d9534f;
+  }
+}
+
+.bs-callout-warning {
+  border-left-color: #f0ad4e;
+  h4 {
+    color: #f0ad4e;
+  }
+}
+
+.bs-callout-info {
+  border-left-color: #5bc0de;
+  h4 {
+    color: #5bc0de;
+  }
+}
