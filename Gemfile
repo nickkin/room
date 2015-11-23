@@ -61,5 +61,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-seiyria-bootstrap-slider'
 end
 
-gem 'puma'
-gem 'rails_12factor'
+group :production do
+  gem 'puma'
+  gem 'rails_12factor'
+end
