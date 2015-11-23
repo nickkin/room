@@ -56,7 +56,10 @@ gem 'refile-mongoid', github: "devilcoders/refile-mongoid"
 gem "refile-mini_magick"
 
 gem 'bootstrap-sass'
-gem 'puma'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-seiyria-bootstrap-slider'
 end
+
+gem 'puma'
+gem 'rails_12factor'
