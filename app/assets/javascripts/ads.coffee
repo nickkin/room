@@ -9,7 +9,7 @@ window.initSearchAddress = ->
     identify: (obj) ->
       obj.display_name
     remote:
-      url: 'http://nominatim.openstreetmap.org/search?format=json&q=%QUERY'
+      url: 'https://nominatim.openstreetmap.org/search?format=json&q=%QUERY'
       wildcard: '%QUERY')
 
   parentEntitiesDefaults = (q, sync) ->
