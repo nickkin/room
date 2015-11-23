@@ -1,5 +1,0 @@
-- if @from_yandex_map
-  set_ads_to_map(#{raw Ad.json_for_yandex_map(@ads)});
-- else
-  $('.ads-list').html("#{escape_javascript( render( partial: "ads_list"))}");
-  initOpenObjectBalloon();

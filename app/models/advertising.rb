@@ -1,4 +1,4 @@
-class Ad
+class Advertising
   include Mongoid::Document
   extend Refile::Mongoid::Attachment
 

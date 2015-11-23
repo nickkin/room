@@ -1,7 +1,7 @@
 window.initMap = ->
 
   ymaps.ready ->
-    myMap = new (ymaps.Map)('ad-map', {
+    myMap = new (ymaps.Map)('advertising-map', {
       center: [
         55.751574
         37.573856
@@ -65,15 +65,15 @@ window.initSlider = ->
     updateAdsList()
 
 window.initOpenObjectBalloon = ->
-  $('.js-ad-item').on 'click', (e)->
+  $('.js-advertising-item').on 'click', (e)->
     objectId = $(this).data("object-id")
     LoadingObjectManager.objects.balloon.open(objectId)
 
 generateUrlToServer = (formYandexMap = false)->
   if formYandexMap
-    url = '/ads?from=yandex_map&bbox=%b'
+    url = '/advertisings?from=yandex_map&bbox=%b'
   else
-    url = '/ads?bbox=' + myMap.getBounds().toString()
+    url = '/advertisings?bbox=' + myMap.getBounds().toString()
 
   if localStorage.getItem("min_price") && localStorage.getItem("max_price")
     newParam = {

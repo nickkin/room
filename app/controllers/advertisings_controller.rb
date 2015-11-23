@@ -1,32 +1,32 @@
-class AdsController < ApplicationController
+class AdvertisingsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :require_login, except: [:index]
-  before_action :load_ad,  only: [:edit, :update, :destroy]
+  before_action :load_advertising,  only: [:edit, :update, :destroy]
 
 
   def index
     @from_yandex_map = params[:from] == "yandex_map"
 
-    @ads = if @from_yandex_map
-      Ad.where("location" => {"$within" => {"$box" => coordinates}})
+    @advertisings = if @from_yandex_map
+      Advertising.where("location" => {"$within" => {"$box" => coordinates}})
     else
-      Ad.page(params[:page]).per(5).where("location" => {"$within" => {"$box" => coordinates}})
+      Advertising.page(params[:page]).per(5).where("location" => {"$within" => {"$box" => coordinates}})
     end
     if params[:min_price] && params[:max_price]
-      @ads = @ads.where(:"price" => { :"$lte" => params[:max_price].to_f, :"$gte" => params[:min_price].to_f })
+      @advertisings = @advertisings.where(:"price" => { :"$lte" => params[:max_price].to_f, :"$gte" => params[:min_price].to_f })
     end
-    @ads.entries
+    @advertisings.entries
   end
 
   def new
-    @ad = Ad.new
+    @advertising = Advertising.new
   end
 
   def create
-    @ad = current_user.ads.new(ad_params)
-    if @ad.save
+    @advertising = current_user.advertisings.new(advertising_params)
+    if @advertising.save
       flash[:success] = 'объявление удачно создано'
-      redirect_to edit_ad_path(@ad)
+      redirect_to edit_advertising_path(@advertising)
     else
       flash.now[:error] = 'объявление не создано'
       render :new
@@ -34,8 +34,8 @@ class AdsController < ApplicationController
   end
 
   def update
-    @ad.update(ad_params)
-    if @ad.save
+    @advertising.update(advertising_params)
+    if @advertising.save
       flash[:success] = 'объявление удачно изменено'
       render :edit
     else
@@ -48,20 +48,20 @@ class AdsController < ApplicationController
   end
 
   def destroy
-    @ad.destroy
+    @advertising.destroy
     redirect_to root_path
   end
 
 private
 
-  def load_ad
-    @ad = current_user.ads.where(id: params[:id]).first
-    unless @ad
+  def load_advertising
+    @advertising = current_user.advertisings.where(id: params[:id]).first
+    unless @advertising
       redirect_to root_path, flash: {error: "Ваше объявление не найдено"}
     end
   end
 
-  def ad_params
+  def advertising_params
     params.require(:advertising).permit(:name, :description, :address, :price, :location, :image_preview).tap do |a|
       if a[:location].present?
         a[:location] = a[:location].split(' ').map(&:to_f)

@@ -6,7 +6,7 @@ class User
   field :crypted_password, type: String
   field :salt, type: String
 
-  has_many :ads
+  has_many :advertisings
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes["password"] }
   validates :password, confirmation: true, if: -> { new_record? || changes["password"] }

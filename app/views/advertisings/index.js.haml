@@ -1,0 +1,5 @@
+- if @from_yandex_map
+  set_ads_to_map(#{raw Advertising.json_for_yandex_map(@advertisings)});
+- else
+  $('.advertisings-list').html("#{escape_javascript( render( partial: "advertisings_list"))}");
+  initOpenObjectBalloon();

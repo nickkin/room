@@ -25,7 +25,7 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             - if current_user
-              %li= link_to "Создать объявление", new_ad_path
+              %li= link_to "Создать объявление", new_advertising_path
               %li= link_to "Выйти", :logout, method: :post
             - else
               %li= link_to "Зарегистрироваться", new_user_path

@@ -1,0 +1,14 @@
+.bs-callout.bs-callout-primary.js-advertising-item{data: {object_id: advertising_item.id}}
+  .row
+    .col-sm-8
+      %h4.name=advertising_item.name
+      .price
+        Цена:
+        =advertising_item.price
+      .description=advertising_item.description
+
+      -if current_user && current_user == advertising_item.user
+        =link_to edit_advertising_path(advertising_item) do
+          %span.glyphicon.glyphicon-edit
+    .col-sm-4
+      = image_tag attachment_url(advertising_item, :image_preview, :fill, 100, 100, format: "jpg")
