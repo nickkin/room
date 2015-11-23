@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :users, only: [:create, :new]
-  resources :ads#, only: [:index, :edit, :new, :create, :update, :destroy]
+  resources :ads, except: [:show]
 
 
   root 'rooms#index'

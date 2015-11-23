@@ -1,7 +1,8 @@
 class AdsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  # before_action :build_ad, only: [:create]
+  before_action :require_login, except: [:index]
   before_action :load_ad,  only: [:edit, :update, :destroy]
+
 
   def index
     @from_yandex_map = params[:from] == "yandex_map"
@@ -22,7 +23,7 @@ class AdsController < ApplicationController
   end
 
   def create
-    @ad = Ad.new(ad_params)
+    @ad = current_user.ads.new(ad_params)
     if @ad.save
       flash[:success] = 'объявление удачно создано'
       redirect_to edit_ad_path(@ad)
@@ -48,13 +49,16 @@ class AdsController < ApplicationController
 
   def destroy
     @ad.destroy
-    redirect_to new_ad_path
+    redirect_to root_path
   end
 
 private
 
   def load_ad
-    @ad = Ad.find(params[:id])
+    @ad = current_user.ads.where(id: params[:id]).first
+    unless @ad
+      redirect_to root_path, flash: {error: "Ваше объявление не найдено"}
+    end
   end
 
   def ad_params
