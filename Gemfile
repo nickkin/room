@@ -60,6 +60,3 @@ gem 'bootstrap-sass'
 source 'https://rails-assets.org' do
   gem 'rails-assets-seiyria-bootstrap-slider'
 end
-
-gem 'puma'
-gem 'rails_12factor'
